@@ -34,5 +34,6 @@ cd "$ROOT/libexec/mod"
 
 go mod init "gomod-$NAME/$VERSION"
 go get "$@"
+go install "$@"
 
 brew link "gomod-$NAME"
