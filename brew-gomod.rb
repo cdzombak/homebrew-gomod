@@ -14,10 +14,10 @@
 
 class BrewGomod < Formula
   desc "brew command to cleanly install binaries from Go modules"
-  homepage "https://github.com/FiloSottile/homebrew-gomod"
-  url "https://github.com/FiloSottile/homebrew-gomod/archive/v0.0.3.tar.gz"
-  sha256 "cab68489bafc3ce83c5fd075bea4ccb5b67e72fe4c80c3da6491f707f142e282"
-  head "https://github.com/FiloSottile/homebrew-gomod.git"
+  homepage "https://github.com/cdzombak/homebrew-gomod"
+  url "https://github.com/cdzombak/homebrew-gomod/archive/v0.0.4-cdzombak.tar.gz"
+  sha256 "a46a871867b0867dd14f046abeeabf52cf6a5d740bfc38cb4fe44208a2359c26"
+  head "https://github.com/cdzombak/homebrew-gomod.git"
 
   depends_on "go"
 
