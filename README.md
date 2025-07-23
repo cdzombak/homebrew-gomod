@@ -7,7 +7,7 @@ https://blog.filippo.io/install-go-tools-from-modules-with-brew-gomod
 ## Installation
 
 ```
-$ brew install FiloSottile/gomod/brew-gomod
+$ brew install cdzombak/gomod/brew-gomod
 ```
 
 ## Usage
