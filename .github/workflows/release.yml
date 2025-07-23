@@ -1,0 +1,59 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ github.ref_name }}
+          body: |
+            Release ${{ github.ref_name }}
+            
+            ## Installation
+            
+            ```bash
+            brew install cdzombak/gomod/brew-gomod
+            ```
+            
+            ## Files
+            - `brew-gomod`: The main brew command script
+            - `brew-gomod.rb`: Homebrew formula file
+          draft: false
+          prerelease: false
+          
+      - name: Upload brew-gomod script
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./brew-gomod
+          asset_name: brew-gomod
+          asset_content_type: application/x-shellscript
+          
+      - name: Upload Homebrew formula
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./brew-gomod.rb
+          asset_name: brew-gomod.rb
+          asset_content_type: text/plain
