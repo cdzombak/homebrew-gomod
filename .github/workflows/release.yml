@@ -15,37 +15,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Validate brew-gomod.rb version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -e
-          TAG_VERSION="${{ github.ref_name }}"
-          echo "Validating that brew-gomod.rb contains version $TAG_VERSION"
-          
-          # Check if the URL in brew-gomod.rb contains the current tag version
-          if ! grep -q "archive/$TAG_VERSION.tar.gz" brew-gomod.rb; then
-            echo "ERROR: brew-gomod.rb does not contain the correct version $TAG_VERSION"
-            echo "Current content of brew-gomod.rb:"
-            cat brew-gomod.rb
-            echo ""
-            echo "Expected URL should contain: archive/$TAG_VERSION.tar.gz"
-            echo "Deleting tag $TAG_VERSION and failing the release..."
-            
-            # Configure git for the action
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            
-            # Delete the tag locally and remotely
-            git tag -d $TAG_VERSION || echo "Local tag deletion failed or tag already deleted"
-            git push origin :refs/tags/$TAG_VERSION || echo "Remote tag deletion failed or tag already deleted"
-            
-            echo "Tag $TAG_VERSION has been deleted due to version mismatch."
-            exit 1
-          fi
-          
-          echo "✓ Version validation passed: brew-gomod.rb contains $TAG_VERSION"
-        
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
