@@ -16,7 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Create Release
@@ -56,6 +55,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Switch to master branch to make the formula update
+          git fetch origin master
+          git checkout master
+          
           # Extract version from tag (remove 'v' prefix if present)
           VERSION="${{ github.ref_name }}"
           
