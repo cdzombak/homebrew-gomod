@@ -26,3 +26,15 @@ Linking /usr/local/Cellar/gomod-pp/2020-03-15...  1 symlinks created
 $ brew uninstall gomod-pp
 Uninstalling /usr/local/Cellar/gomod-pp/2020-03-15... (3 files, 4.8MB)
 ```
+
+## Releases
+
+When a new version is tagged (e.g., `v0.0.6`), the GitHub Actions workflow automatically:
+
+1. Creates a GitHub release
+2. Downloads the release tarball and calculates its SHA256 hash
+3. Updates `brew-gomod.rb` with the new version URL and hash
+4. Commits the updated formula back to the repository
+5. Uploads the updated formula as a release asset
+
+This ensures the Homebrew formula is always synchronized with the latest release.
