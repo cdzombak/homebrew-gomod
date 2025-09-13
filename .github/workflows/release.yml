@@ -68,13 +68,10 @@ jobs:
           
           # Clean up
           rm -f release.tar.gz
-          
-      - name: Upload Homebrew formula
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload updated Homebrew formula
+        uses: softprops/action-gh-release@v2
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./brew-gomod.rb
-          asset_name: brew-gomod.rb
-          asset_content_type: text/plain
+          tag_name: ${{ github.ref_name }}
+          files: |
+            brew-gomod.rb
