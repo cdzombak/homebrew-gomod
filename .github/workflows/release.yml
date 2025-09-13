@@ -11,6 +11,7 @@ jobs:
     permissions:
       contents: write
       actions: write
+      releases: write
     
     steps:
       - name: Checkout code
