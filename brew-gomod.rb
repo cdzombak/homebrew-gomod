@@ -15,7 +15,7 @@
 class BrewGomod < Formula
   desc "brew command to cleanly install binaries from Go modules"
   homepage "https://github.com/cdzombak/homebrew-gomod"
-  url "https://github.com/cdzombak/homebrew-gomod/archive/v0.0.6.tar.gz"
+  url "https://github.com/cdzombak/homebrew-gomod/archive/v0.0.4-cdzombak.tar.gz"
   sha256 "a46a871867b0867dd14f046abeeabf52cf6a5d740bfc38cb4fe44208a2359c26"
   head "https://github.com/cdzombak/homebrew-gomod.git"
 
